@@ -1,0 +1,22 @@
+CREATE DATABASE IF NOT EXISTS expenses_db;
+USE expenses_db;
+
+CREATE TABLE IF NOT EXISTS users(
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(25) NOT NULL,
+    last_name VARCHAR(25),
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(60),
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS registries(
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(45) NOT NULL,
+    description VARCHAR(60),
+    amount INT(30) NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INT(6) UNSIGNED,
+    FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
