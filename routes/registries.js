@@ -6,14 +6,14 @@ const { canDoPutRequest } = require('./../operations/routeOperations');
 
 router.get('/all', async (req, res) => {
     const registries = await db.query(`SELECT * FROM registries`);
-    res.send(registries);
+    res.send(registries.sort((a, b) => new Date(a.reg_date) - new Date(b.reg_date)));
 });
 
 router.get('/', verifyToken, async (req, res) => {
     const userId = req.decoded.user.id;
 
     const registries = await db.query(`SELECT * FROM registries where user_id = '${userId}'`);
-    res.send(registries);
+    res.send(registries.sort((a, b) => new Date(b.reg_date) - new Date(a.reg_date)));
 });
 router.post('/', verifyToken, async (req, res) => {
     const userId = req.decoded.user.id;

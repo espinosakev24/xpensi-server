@@ -7,7 +7,6 @@ const authRoutes = require('./routes/auth');
 const bodyParser = require('body-parser')
 const cors = require('cors');
 
-console.log(process.env);
 app.use(cors());
 app.use(bodyParser.json());
 
