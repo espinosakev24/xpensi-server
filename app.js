@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('custom-env').env(process.env.NODE_ENV);
 const express = require('express');
 const app = express();
 const registriesRoutes = require('./routes/registries');
@@ -7,7 +7,7 @@ const authRoutes = require('./routes/auth');
 const bodyParser = require('body-parser')
 const cors = require('cors');
 
-
+console.log(process.env);
 app.use(cors());
 app.use(bodyParser.json());
 
